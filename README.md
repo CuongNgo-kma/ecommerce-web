@@ -1,22 +1,4 @@
 # ecommerce-web
 ecommerce-web
-![image](https://user-images.githubusercontent.com/56119321/232951129-2428827b-d550-4bbd-97ac-41ec3829a86a.png)
-![image](https://user-images.githubusercontent.com/56119321/232951221-635e8960-d956-4278-ac36-c9a07fc53226.png)
-![image](https://user-images.githubusercontent.com/56119321/232951268-a2eebf4a-6e9c-4dc2-802c-ce3c2eabad6a.png)
-![image](https://user-images.githubusercontent.com/56119321/232951304-402b980e-049c-4641-9681-1c51d78ba5a2.png)
-
-install dependencies:
-
-cd BE
-npm i
-
-cd Fe
-npm i
-
-run server:
-cd BE
-npm run dev
-
-run websiteL
-cd FE
-npm start
+![image](https://github.com/CuongNgo-kma/ecommerce-web/assets/56119321/e21ed2c1-0a59-42c7-b6e2-99178079967c)
+![image](https://github.com/CuongNgo-kma/ecommerce-web/assets/56119321/867c46a7-5192-4d00-9ad6-2c24341be173)
