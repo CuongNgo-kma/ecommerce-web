@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "@paypal/react-paypal-js": "^7.8.3",
+    "@tensorflow-models/mobilenet": "^2.1.0",
+    "@tensorflow/tfjs": "^4.5.0",
+    "@tensorflow/tfjs-backend-cpu": "^4.5.0",
+    "@tensorflow/tfjs-backend-webgl": "^4.5.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,8 +18,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-paypal-js": "^0.0.1-security",
-    "react-router-dom": "^6.8.0",
+    "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.2",
     "react-switch": "^7.0.0",
     "web-vitals": "^2.1.4"
   },

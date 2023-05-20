@@ -12,7 +12,7 @@ cloudinary.config({
 
 
 
-router.post('/upload', auth, authAdmin, (req, res) => {
+router.post('/upload', auth, (req, res) => {
     try {
         if (!req.files || Object.keys(req.files).length === 0) {
             return res.status(400).json({ msg: "No files were uploaded." })
@@ -26,6 +26,7 @@ router.post('/upload', auth, authAdmin, (req, res) => {
             removeTmp(file.tempFilePath)
             return res.status(400).json({ msg: "File format is incorrect." })
         }
+        console.log(file);
         cloudinary.uploader.upload(file.tempFilePath, { folder: "dataWeb-thuong-mai" }, async (err, result) => {
             if (err) {
                 throw err

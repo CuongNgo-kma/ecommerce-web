@@ -5,6 +5,7 @@ import { globalState } from "../../../globalState";
 import url from "../../../api/url";
 // import PaypalButton from './PaypalButton'
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 function Cart() {
   const state = useContext(globalState);
   const [cart, setCart] = state.UserAPI.cart;
@@ -14,40 +15,92 @@ function Cart() {
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErorMessage] = useState("");
   const [orderId, setOrderId] = useState(false);
+  const listItems = cart.map((product) => ({
+    name: product.title,
+    description: product.description,
+    quantity: product.quantity.toString(),
+    unit_amount: {
+      currency_code: "USD",
+      value: product.price.toString(),
+    },
+  }));
+  // console.log(listItems);
+
   const createOrder = (data, actions) => {
-    return actions.order.create({
-      purchase_units: [
-        {
-          description: 'This is the Book Worth 10'
-          ,
-          amount: {
-            currency_code: 'USD',
-            value: total
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: {
+              currency_code: "USD",
+              value: total,
+              breakdown: {
+                item_total: {
+                  currency_code: "USD",
+                  value: total,
+                },
+              },
+            },
+            items: listItems,
+            shippingPreference: "SET_PROVIDED_ADDRESS",
+            // Thêm địa chỉ mặc định ở đây
+            shipping: {
+              name: {
+                full_name: "Cuong KMA",
+              },
+              address: {
+                address_line_1: "Số 16, ngõ 143 đường Chiến Thắng ",
+                admin_area_2: "Thanh Trì",
+                admin_area_1: "Hà Nội",
+                postal_code: "100000",
+                country_code: "VN",
+              },
+            },
+            address_override: 1,
           },
+        ],
+        application_context: {
+          shipping_preference: "SET_PROVIDED_ADDRESS",
+          user_action: "PAY_NOW",
         },
-      ],
-      application_context: {
-        shipping_preference: 'NO_SHIPPING'
-      }
-    })
-      .then((orderID) => {
-        setOrderId(orderID)
-        return orderID
       })
-  }
+      .then((orderID) => {
+        setOrderId(orderID);
+        return orderID;
+      });
+  };
 
-  const onApprove = (data, actions) => {
-    resetCart()
+  const onApprove = async (data, actions) => {
+    // console.log(data);
+
     return actions.order.capture().then(function (details) {
-      const { payer } = details
-      setSuccess(true)
-    })
-  }
-
-  const onError = (data, actions)=>{
-    setErorMessage("An error occured with your payment")
-
-  }
+      console.log(details);
+      const { id, purchase_units } = details;
+      const { shipping } = purchase_units[0];
+      console.log(id);
+      console.log(shipping);
+      addPayment(id, shipping);
+      setSuccess(true);
+      resetCart();
+    });
+  };
+  const addPayment = async (id, shipping) => {
+    await axios
+      .post(
+        "api/payment",
+        { paymentID: id, cart: cart, address: shipping },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .catch(() => {
+        console.log("lỗi");
+      });
+    console.log("ok");
+  };
+  const onError = (data, actions) => {
+    setErorMessage("An error occured with your payment");
+  };
   useEffect(() => {
     const getTotal = () => {
       const total = cart.reduce((prev, item) => {
@@ -102,17 +155,37 @@ function Cart() {
       <h2 style={{ textAlign: "center", fontSize: "5rem" }}>Cart Empty</h2>
     );
   }
-  const resetCart =async () =>{
+  const reloadPgae = () => {
+    window.location.reload();
+    // alertPayment();
+    // window.location.reload()
+  };
+
+  const alertPayment = () => {
+    alert("You have success placed an order.");
+  };
+  // if (true) {
+  //   alertPayment()
+  // }
+  const resetCart = async () => {
     try {
-      await axios.patch('http:// 192.168.0.103:5000/user/delelecart', {cart: []}, {
-        headers: {
-          Authorization: token
+      await axios.patch(
+        "user/deletecart",
+        {},
+        {
+          headers: {
+            Authorization: token,
+          },
         }
-      })
+      );
     } catch (error) {
       console.log("lỗi");
     }
-  }
+  };
+  const paypalOptions = {
+    flow: "checkout",
+    useraction: "continue",
+  };
   return (
     <div>
       {cart.map((product) => (
@@ -140,7 +213,7 @@ function Cart() {
       ))}
       <div className="total">
         <h3>Total: $ {total}</h3>
-        <div style={{marginTop: 40}}>
+        <div style={{ marginTop: 40 }}>
           <PayPalScriptProvider
             options={{
               "client-id":
@@ -157,15 +230,13 @@ function Cart() {
             </button>
             {show ? (
               <PayPalButtons
-                style={{ layout: "vertical", }}
+                style={{ layout: "vertical" }}
                 createOrder={createOrder}
                 onApprove={onApprove}
                 onError={onError}
               />
             ) : null}
-            {
-              success?(alert("payment success!")):(<h1>Fail to pay</h1>)
-            }
+            {success ? reloadPgae() : <h1>Fail to pay</h1>}
           </PayPalScriptProvider>
         </div>
       </div>

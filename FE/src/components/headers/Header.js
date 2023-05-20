@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { globalState } from "../../globalState";
 import { useContext } from "react";
 import Menu from "./icon/bars-solid.svg";
@@ -13,7 +13,9 @@ function Header() {
   const [isLogged] = state.UserAPI.isLogged;
   const [isAdmin] = state.UserAPI.isAdmin;
   const [cart] = state.UserAPI.cart;
-
+  const [userId] = state.UserAPI.userId
+  const [token] = state.token
+  const [name, setName] = useState("")
   const logoutUser = async () => {
     await axios.get("/user/logout");
     localStorage.removeItem("firstLogin");
@@ -37,6 +39,9 @@ function Header() {
     return (
       <>
         <li>
+          <Link to="/find-relate-product">FindProduct</Link>
+        </li>
+        <li>
           <Link to="/history">history</Link>
         </li>
         <li>
@@ -47,7 +52,18 @@ function Header() {
       </>
     );
   };
-
+  const loadProfileUser = async () => {
+    const res = await axios.get('http://localhost:5000/user/infor', {
+      headers: {
+        Authorization: token
+      }
+    })
+    setName(res.data.name)
+  }
+  useEffect(() => {
+    loadProfileUser()
+  })
+  
   return (
     <header>
       <div className="menu">
@@ -56,21 +72,27 @@ function Header() {
 
       <div className="logo">
         <h1>
-          <Link to="/">{isAdmin ? "Admin" : "CuongKma shop"}</Link>
+          <Link to="/">{isAdmin ? "Admin" : `Welcome ${name}`}</Link>
         </h1>
       </div>
       <ul>
         <li>
           <Link to="/">{isAdmin ? "Products" : "Shop"}</Link>
         </li>
+        <li>
+          <Link to={`/profile/${userId}`}>Profile</Link>
+        </li>
 
         {isAdmin && adminRouter()}
         {isLogged ? (
           loggedRouter()
         ) : (
-          <li>
-            <Link to="/login">Login + Register</Link>
-          </li>
+          
+            <li>
+              <Link to="/login">Login + Register</Link>
+            </li>
+            
+          
         )}
 
         <li>

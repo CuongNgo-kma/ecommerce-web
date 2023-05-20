@@ -11,5 +11,7 @@ router.get('/infor', auth, userCtrl.getUser)
 router.delete('/delete/:id', auth,authAdmin, userCtrl.delete)
 router.patch('/addcart', auth, userCtrl.addCart)
 router.patch('/deletecart', auth, userCtrl.deleteCart)
+router.get('/history', auth, userCtrl.history)
+router.patch('/updateuser/:id', auth, userCtrl.updateUser)
 
 module.exports = router

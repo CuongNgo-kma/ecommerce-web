@@ -7,7 +7,7 @@ function Login() {
   })
   const onChangeInput = e => {
     const { name, value } = e.target
-    setUser({ ...user, [name]: value })
+    setUser({ ...user, [name]: value.toLowerCase() })
   }
   const loginSubmit = async (e) => {
     e.preventDefault()

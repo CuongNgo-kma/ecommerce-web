@@ -11,6 +11,11 @@ const useSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    avatar:{
+        type: String,
+        require: true
+    }
+    ,
     password: {
         type: String,
         required: true
@@ -22,7 +27,7 @@ const useSchema = new mongoose.Schema({
     cart: {
         type: Array,
         default: []
-    }
+    }, 
 },
     {
         timestamps: true

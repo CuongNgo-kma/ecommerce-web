@@ -54,3 +54,14 @@ button {
 
 /* payment button  */
 @import url("./components/mainpages/cart/PaypalButton.css");
+
+/* history */
+
+@import url("./components/mainpages/history/history.css");
+
+/* categories */
+@import url("./components/mainpages/category/categories.css");
+
+/* create product */
+
+@import url("./components/mainpages/createProduct/CreateProduct.css");

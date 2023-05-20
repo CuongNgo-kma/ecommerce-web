@@ -15,6 +15,7 @@ function DetailProduct() {
 
   useEffect(() => {
     console.log("re render");
+    console.log(params);
     if (params.id) {
       products.forEach((product) => {
         if (product._id === params.id) {

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import {globalState} from '../../../globalState'
 import ProductItem from '../ultils/ProductItem/ProductItem';
 import Loading from '../auth/Loading/Loading';
@@ -8,7 +8,7 @@ function Products() {
     const state = useContext(globalState)
     const products = state.ProductAPI.product.product
     const [isAdmin] = state.UserAPI.isAdmin 
-    
+    const [search, setSearch] = useState()
     return (
         <>
         <div className="products">
@@ -17,6 +17,8 @@ function Products() {
                     return <ProductItem key={product._id} product={product} isAdmin={isAdmin}/>
                 })
             }
+        
+
         </div>
         {products.length ===0 && <Loading/>}
         </>

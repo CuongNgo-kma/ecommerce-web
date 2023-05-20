@@ -9,6 +9,11 @@ const authAdmin = require("../middleware/authAdmin");
 router.route('/payment')
 .get(auth, authAdmin, paymentCtrl.getPayments)
 .post(auth, paymentCtrl.createPayment)
+.delete(auth, authAdmin, paymentCtrl.deletePayment)
+
+
+router.route('/payment/:id')
+    .delete(auth, authAdmin, paymentCtrl.deletePayment)
 
 
 module.exports = router
