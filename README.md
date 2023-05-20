@@ -3,8 +3,10 @@ ecommerce-web
 Set up:
 truy cập đường dẫn /BE
 ->chạy lệnh "npm i" sau đó chạy lệnh "npm run dev"
+
 truy câp đường dẫn /BE
 ->chạy lệnh "npm i" sau đó chạy lệnh "npm start"
+
 ***note: bạn nên sử dụng yarn thay cho npm để tránh được nhiều xung đột dependencies khi cài đặt thư viện
 Demo admin page:
 ![image](https://github.com/CuongNgo-kma/ecommerce-web/assets/56119321/e21ed2c1-0a59-42c7-b6e2-99178079967c)
