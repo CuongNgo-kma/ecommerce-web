@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const productSchema = new mongoose.Schema({
     product_id: {
         type: String,
@@ -42,7 +43,8 @@ const productSchema = new mongoose.Schema({
         default: 0
     }
 }, {
-    timeseries: true // important
+    timestamps: true //important
 })
+
 
 module.exports = mongoose.model("Products", productSchema)

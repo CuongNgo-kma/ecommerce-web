@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { globalState } from "../../../globalState";
-import url from "../../../api/url";
 // import PaypalButton from './PaypalButton'
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 

@@ -13,9 +13,9 @@ function Header() {
   const [isLogged] = state.UserAPI.isLogged;
   const [isAdmin] = state.UserAPI.isAdmin;
   const [cart] = state.UserAPI.cart;
-  const [userId] = state.UserAPI.userId
-  const [token] = state.token
-  const [name, setName] = useState("")
+  const [userId] = state.UserAPI.userId;
+  const [token] = state.token;
+  const [name] = state.UserAPI.name
   const logoutUser = async () => {
     await axios.get("/user/logout");
     localStorage.removeItem("firstLogin");
@@ -52,18 +52,8 @@ function Header() {
       </>
     );
   };
-  const loadProfileUser = async () => {
-    const res = await axios.get('http://localhost:5000/user/infor', {
-      headers: {
-        Authorization: token
-      }
-    })
-    setName(res.data.name)
-  }
-  useEffect(() => {
-    loadProfileUser()
-  })
-  
+ 
+
   return (
     <header>
       <div className="menu">
@@ -87,12 +77,9 @@ function Header() {
         {isLogged ? (
           loggedRouter()
         ) : (
-          
-            <li>
-              <Link to="/login">Login + Register</Link>
-            </li>
-            
-          
+          <li>
+            <Link to="/login">Login + Register</Link>
+          </li>
         )}
 
         <li>

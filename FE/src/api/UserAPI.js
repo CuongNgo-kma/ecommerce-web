@@ -8,7 +8,7 @@ function UserAPI(token) {
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
     const [userId, setUserId] = useState('')
-
+    const [name, setName] = useState('')
     useEffect(()=>{
         if (token) {
             const getUser =async ()=>{
@@ -42,6 +42,7 @@ function UserAPI(token) {
                     }
                 })
                 setUserId(nhung.data._id)
+                setName(nhung.data.name)
                 // console.log(res);
             }
             getHistory()
@@ -76,7 +77,8 @@ function UserAPI(token) {
     cart: [cart, setCart],
     history: [history, setHistory],
     addCart: addCart,
-    userId: [userId, setUserId]
+    userId: [userId, setUserId],
+    name: [name, setName]
   }
 }
 

@@ -10,7 +10,7 @@ const authAdmin = require('./middleware/authAdmin')
 require('dotenv').config()
 
 const app = express()
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
 app.use(express.json())
 app.use(cookieParse())
 app.use(cors())
@@ -26,12 +26,12 @@ app.use('/api', require('./routes/upload')) //
 app.use('/api', require('./routes/productRouter')) // 
 app.use('/api', require('./routes/paymentRouter')) // 
 
-app.get("/success", (req, res) => {
-    res.render("success")
-})
-app.get("/cancel", (req, res) => {
-    res.render("cancel")
-})
+// app.get("/success", (req, res) => {
+//     res.render("success")
+// })
+// app.get("/cancel", (req, res) => {
+//     res.render("cancel")
+// })
 
 //connect to mongodb
 const URI = process.env.MONGODB_URL;

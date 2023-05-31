@@ -15,6 +15,7 @@ import Categories from "./category/Categories";
 import EditProduct from "./edit_product/EditProduct";
 import ProductClassifier from '../detectProduct/ModelDetectImage'
 import Profile from "./profile/Profile";
+import ChangePassword from "../changepassword/ChangePassword";
 
 function MainPages() {
   const state = useContext(globalState);
@@ -36,6 +37,7 @@ function MainPages() {
       <Route path="/category" element={isLogged && isAdmin ? < Categories /> : <NotFound />} />
       <Route path="/find-relate-product" element={isLogged ? <ProductClassifier /> : <NotFound />} />
       <Route path="/profile/:id" element={isLogged ? <Profile /> : <NotFound />} />
+      <Route path="/user/password/:id" element={isLogged ? <ChangePassword /> : <NotFound />} />
 
       {/* <Route path="/products/:id" element={isLogged && isAdmin ? <EditProduct /> : <NotFound />} /> */}
       

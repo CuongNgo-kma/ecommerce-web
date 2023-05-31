@@ -4,7 +4,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { globalState } from "../../../globalState";
 import { useParams } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 function Profile() {
   const params = useParams();
   const { id } = params;
@@ -19,7 +19,8 @@ function Profile() {
   const [images, setImages] = useState(false);
   const [token] = state.token;
   const [isAdmin] = state.UserAPI.isAdmin;
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
+  const [imageUser, setImageUser] = useState("");
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -74,6 +75,7 @@ function Profile() {
           headers: { Authorization: token },
         }
       );
+      alert("update thành công");
     } catch (err) {
       alert(err);
     }
@@ -106,26 +108,42 @@ function Profile() {
       name: `${res.data.name}`,
       email: `${res.data.email}`,
     });
-
+    setImageUser(res.data.avatar);
     console.log(res.data);
   };
   useEffect(() => {
     loadProfileUser();
   }, []);
-    const showAddImage = ()=>{
-        setShow(true)
-    }
+  const showAddImage = () => {
+    setShow(true);
+  };
+  console.log(user.avatar);
   return (
     <div className="create_product">
       <div className="upload">
         {show ? (
           <input type="file" name="file" id="file_up" onChange={handleUpload} />
         ) : (
-          <img id="file_up" src={user.avatar} alt="Image" />
+          <img id="file_up" src={imageUser} alt="Image" />
         )}
         {/* <input type="file" name="file" id="file_up" onChange={handleUpload} /> */}
-              <button type="button" style={{}} onClick={showAddImage}>Add</button>
-
+        <button
+          type="button"
+          className="addavatar"
+          style={{
+            backgroundColor: "#58257b",
+            border: "none",
+            color: "white",
+            padding: "15px 32px",
+            textAlign: "center",
+            textDecoration: "none",
+            display: "inline-block",
+            fontSize: "16px",
+          }}
+          onClick={showAddImage}
+        >
+          Add avatar
+        </button>
 
         {loading ? (
           <div id="file_img">
@@ -151,7 +169,6 @@ function Profile() {
             onChange={handleChangeInput}
           />
         </div>
-
         <div className="row">
           <label htmlFor="email">Email</label>
           <input
@@ -163,20 +180,11 @@ function Profile() {
             onChange={handleChangeInput}
           />
         </div>
-
-        {/* <div className="row">
-                    <label htmlFor="price">Price</label>
-                    <input
-                        type="number"
-                        name="price"
-                        id="price"
-                        required
-                        value={user.price}
-                        onChange={handleChangeInput}
-                    />
-                </div> */}
-
-        <button type="submit">Update</button>
+        <button type="submit">Update</button> 
+        <br />
+        <br />
+        <br />
+        <Link to={`/user/password/${id}`}>Change password?</Link>
       </form>
     </div>
   );

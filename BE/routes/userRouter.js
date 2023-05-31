@@ -13,5 +13,6 @@ router.patch('/addcart', auth, userCtrl.addCart)
 router.patch('/deletecart', auth, userCtrl.deleteCart)
 router.get('/history', auth, userCtrl.history)
 router.patch('/updateuser/:id', auth, userCtrl.updateUser)
+router.patch('/password/:id', auth, userCtrl.ChangePassword)
 
 module.exports = router

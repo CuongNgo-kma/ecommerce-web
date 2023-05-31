@@ -14,6 +14,7 @@ function Login() {
     try {
       await axios.post('/user/login', { ...user })
       localStorage.setItem('firstLogin', true)
+      localStorage.setItem('email',user.email)
       window.location.href = "/"
 
     } catch (error) {

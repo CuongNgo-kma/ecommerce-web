@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react'
 import {globalState} from '../../../globalState'
 import ProductItem from '../ultils/ProductItem/ProductItem';
 import Loading from '../auth/Loading/Loading';
+import Filters from './Filters';
 
 
 function Products() {
@@ -11,6 +12,7 @@ function Products() {
     const [search, setSearch] = useState()
     return (
         <>
+        <Filters/>
         <div className="products">
             {
                 products.map(product =>{

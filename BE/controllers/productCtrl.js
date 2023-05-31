@@ -26,19 +26,18 @@ class APIfeature {
     }
     sorting() {
         if (this.queryString.sort) {
-            const sortBy = this.queryString.sort.split(',').join('')
+            const sortBy = this.queryString.sort.split(',').join(' ')
             this.query = this.query.sort(sortBy)
-        }
-        else {
+        } else {
             this.query = this.query.sort('-createdAt')
-
         }
-        return this
 
+        return this;
     }
+
     paginating() {
         const page = this.queryString.page * 1 || 1
-        const limit = this.queryString.limit * 1 || 42 /// note!!!!!!!!!! change view in one page
+        const limit = this.queryString.limit * 1 || 9 /// note!!!!!!!!!! change view in one page
         const skip = (page - 1) * limit
         this.query = this.query.skip(skip).limit(limit)
         return this

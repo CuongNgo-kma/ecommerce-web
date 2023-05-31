@@ -165,6 +165,24 @@ const userCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+  ChangePassword: async (req, res) => {
+    try {
+      const { password } = req.body;
+
+      if (password.length < 6)
+        return res
+          .status(400)
+          .json({ msg: "Password is at least 6 characters long." });
+      const passwordHash = await bcrypt.hash(password, 10);
+      await Users.findByIdAndUpdate(
+        { _id: req.params.id },
+        { password: passwordHash }
+      );
+      res.json({ msg: "Update password of user" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 const createAccessToken = (user) => {
