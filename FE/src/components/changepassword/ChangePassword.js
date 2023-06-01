@@ -22,7 +22,7 @@ function ChangePassword() {
   const handleSubmit = async () => {
     const email = localStorage.getItem("email");
     try {
-      const res = await axios.post("http://localhost:5000/user/login", {
+      const res = await axios.post("/user/login", {
         email: email,
         password: user.oldpass,
       });
@@ -31,7 +31,7 @@ function ChangePassword() {
           alert("Mật khẩu mới và mật khẩu nhập lại không khớp!");
         } else {
           await axios.patch(
-            `http://localhost:5000/user/password/${id}`,
+            `/user/password/${id}`,
             { password: user.newpass },
             {
               headers: {

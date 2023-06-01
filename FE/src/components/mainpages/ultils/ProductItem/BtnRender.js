@@ -14,7 +14,7 @@ function BtnRender({ product }) {
       
       const confirmed = window.confirm(`Bạn có chắc muốn xoá  "${product.title}"`);
       if (confirmed) {
-        await axios.delete(`api/products/${product._id}`, {
+        await axios.delete(`/api/products/${product._id}`, {
           headers: {
             Authorization: token
           }

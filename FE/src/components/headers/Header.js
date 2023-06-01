@@ -9,7 +9,6 @@ import axios from "axios";
 
 function Header() {
   const state = useContext(globalState);
-  // console.log(state);
   const [isLogged] = state.UserAPI.isLogged;
   const [isAdmin] = state.UserAPI.isAdmin;
   const [cart] = state.UserAPI.cart;
@@ -45,6 +44,9 @@ function Header() {
           <Link to="/history">history</Link>
         </li>
         <li>
+          <Link to={`/profile/${userId}`}>Profile</Link>
+        </li>
+        <li>
           <Link to="/" onClick={logoutUser}>
             Logout
           </Link>
@@ -69,9 +71,7 @@ function Header() {
         <li>
           <Link to="/">{isAdmin ? "Products" : "Shop"}</Link>
         </li>
-        <li>
-          <Link to={`/profile/${userId}`}>Profile</Link>
-        </li>
+        
 
         {isAdmin && adminRouter()}
         {isLogged ? (

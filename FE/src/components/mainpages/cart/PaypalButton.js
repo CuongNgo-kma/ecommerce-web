@@ -89,7 +89,7 @@ function PaypalButton({ total }) {
           purchase_units: [{ shipping }],
         } = paymentResult;
         await axios.post(
-          "http://localhost:5000/api/payment",
+          "/api/payment",
           { cart: item, paymentID: id, address: shipping },
           {
             headers: { Authorization: tokenUser[0] },

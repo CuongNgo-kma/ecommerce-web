@@ -69,7 +69,7 @@ function Profile() {
       if (!images) return alert("No Image Upload");
       console.log(user);
       await axios.patch(
-        `http://localhost:5000/user/updateuser/${id}`,
+        `/user/updateuser/${id}`,
         { name: user.name, avatar: user.avatar, email: user.email },
         {
           headers: { Authorization: token },
@@ -98,7 +98,7 @@ function Profile() {
     }
   };
   const loadProfileUser = async () => {
-    const res = await axios.get("http://localhost:5000/user/infor", {
+    const res = await axios.get("/user/infor", {
       headers: {
         Authorization: token,
       },

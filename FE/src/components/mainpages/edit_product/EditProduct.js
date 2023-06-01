@@ -37,7 +37,7 @@ function EditProduct() {
   const updateProduct = async () => {
     try {
       await axios.put(
-        `http://localhost:5000/api/products/${id}`,
+        `/api/products/${id}`,
         { product },
         {
           headers: {
@@ -64,7 +64,7 @@ function EditProduct() {
       formData.append("file", file);
 
       const response = await axios.post(
-        "http://localhost:5000/api/upload",
+        "/api/upload",
         formData,
         {
           headers: {
