@@ -2,6 +2,11 @@ import React from "react";
 // import { Link } from 'react-router-dom'
 import BtnRender from "./BtnRender";
 function ProductItem({ product, isAdmin }) {
+
+  const deleteProduct = async () =>{
+    
+  }
+
   return (
     <div className="product_card">
       {isAdmin && <input type="checkbox" defaultChecked={product.checked} />}

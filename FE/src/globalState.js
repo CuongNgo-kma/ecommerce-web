@@ -4,6 +4,7 @@ import ProductAPI from "./api/ProductAPI";
 // import url from "./api/url";
 import UserAPI from "./api/UserAPI";
 import CategoriesAPI from "./api/CategoriesAPI";
+import url from "./api/url";
 
 export const globalState = createContext();
 export const DataProvider = ({ children }) => {

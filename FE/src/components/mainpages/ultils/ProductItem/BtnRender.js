@@ -11,10 +11,16 @@ function BtnRender({ product }) {
     console.log(product._id);
     
     try {
+      console.log(product);
       
       const confirmed = window.confirm(`Bạn có chắc muốn xoá  "${product.title}"`);
       if (confirmed) {
         await axios.delete(`/api/products/${product._id}`, {
+          headers: {
+            Authorization: token
+          }
+        })
+        await axios.post(`api/destroy`, { public_id: product.images.public_id },{
           headers: {
             Authorization: token
           }
