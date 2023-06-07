@@ -6,7 +6,7 @@ import ProductItem from "../ultils/ProductItem/ProductItem";
 function DetailProduct() {
   const params = useParams();
   const state = useContext(globalState);
-  const products = state.ProductAPI.product.product;
+  const [products] = state.ProductAPI.products;
   const addCart = state.UserAPI.addCart;
   const [DetailProduct, setDetailProduct] = useState([]);
   const [isLogged] = state.UserAPI.isLogged
@@ -23,7 +23,7 @@ function DetailProduct() {
         }
       });
     }
-  }, [params.id, products]);
+  }, [params.id, products,params]);
 
   if (DetailProduct.length === 0) {
     return null;

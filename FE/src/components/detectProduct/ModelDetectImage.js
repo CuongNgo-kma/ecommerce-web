@@ -13,7 +13,7 @@ const ProductClassifier = () => {
   const state = useContext(globalState);
   const [category, setCategory] = state.ProductAPI.category;
   const [categories] = state.CategoriesAPI.categories;
-  const products = state.ProductAPI.product.product;
+  const [products] = state.ProductAPI.products;
   const [isAdmin] = state.UserAPI.isAdmin;
   const loadModel = async () => {
     const model = await mobilenet.load();

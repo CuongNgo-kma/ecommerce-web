@@ -28,7 +28,7 @@ function CreateProduct() {
   const navigate = useNavigate();
   const param = useParams();
 
-  const products = state.ProductAPI.product.product;
+  const [products] = state.ProductAPI.products;
 
   const [onEdit, setOnEdit] = useState(false);
   const [callback, setCallback] = state.ProductAPI.callback;

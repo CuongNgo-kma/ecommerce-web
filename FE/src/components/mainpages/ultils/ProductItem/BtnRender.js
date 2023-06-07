@@ -1,59 +1,38 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { globalState } from "../../../../globalState";
-import axios from "axios";
-function BtnRender({ product }) {
-  const state = useContext(globalState);
-  const [isAdmin] = state.UserAPI.isAdmin;
-  const addCard = state.UserAPI.addCart;
-  const [token] = state.token
-  const deleteProduct = async() =>{
-    console.log(product._id);
-    
-    try {
-      console.log(product);
-      
-      const confirmed = window.confirm(`Bạn có chắc muốn xoá  "${product.title}"`);
-      if (confirmed) {
-        await axios.delete(`/api/products/${product._id}`, {
-          headers: {
-            Authorization: token
-          }
-        })
-        await axios.post(`api/destroy`, { public_id: product.images.public_id },{
-          headers: {
-            Authorization: token
-          }
-        })
-      window.location.reload()
-      }
-    } catch (error) {
-      console.log("Đã xảy ra lỗi");
-    }
-  }
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import {globalState } from '../../../../globalState'
+
+function BtnRender({ product, deleteProduct }) {
+  const state = useContext(globalState)
+  const [isAdmin] = state.UserAPI.isAdmin
+  const addCart = state.UserAPI.addCart
+
+
   return (
     <div className="row_btn">
-      {isAdmin ? (
-        <>
-          <Link id="btn_buy" to="#!" onClick={deleteProduct}>
-            Delete
-          </Link>
-          <Link id="btn_view" to={`/edit_product/${product._id}`}>
-            Edit
-          </Link>
-        </>
-      ) : (
-        <>
-          <Link id="btn_buy" onClick={() => addCard(product)} to="#!">
-            Buy
-          </Link>
-          <Link id="btn_view" to={`/detail/${product._id}`}>
-            View
-          </Link>
-        </>
-      )}
+      {
+        isAdmin ?
+          <>
+            <Link id="btn_buy" to="#!"
+              onClick={() => deleteProduct(product._id, product.images.public_id)}>
+              Delete
+            </Link>
+            <Link id="btn_view" to={`/edit_product/${product._id}`}>
+              Edit
+            </Link>
+          </>
+          : <>
+            <Link id="btn_buy" to="#!" onClick={() => addCart(product)}>
+              Buy
+            </Link>
+            <Link id="btn_view" to={`/detail/${product._id}`}>
+              View
+            </Link>
+          </>
+      }
+
     </div>
-  );
+  )
 }
 
-export default BtnRender;
+export default BtnRender

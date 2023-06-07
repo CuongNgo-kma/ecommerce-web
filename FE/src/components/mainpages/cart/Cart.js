@@ -235,7 +235,7 @@ function Cart() {
                 onError={onError}
               />
             ) : null}
-            {success ? reloadPgae() : <h1>Fail to pay</h1>}
+            {success ? reloadPgae() : <h1>Pending</h1>}
           </PayPalScriptProvider>
         </div>
       </div>

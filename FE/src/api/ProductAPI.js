@@ -3,7 +3,7 @@ import axios from 'axios';
 // import url from './url';
 
 function ProductAPI() {
-  const [product, setProduct] = useState([])
+  const [products, setProducts] = useState([])
   const [callback, setCallback] = useState(false)
   const [category, setCategory] = useState('')
   const [sort, setSort] = useState('')
@@ -13,14 +13,14 @@ function ProductAPI() {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(`/api/products?limit=${page * 9}&${category}&${sort}&title[regex]=${search}`)
-      setProduct(res.data.products)
+      setProducts(res.data.products)
       setResult(res.data.result)
     }
     getProducts()
   }, [callback, category, sort, search, page])
 
   return {
-    product: { product, setProduct },
+    products: [ products, setProducts ],
     callback: [callback, setCallback],
     category: [category, setCategory],
     sort: [sort, setSort],
