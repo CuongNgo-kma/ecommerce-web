@@ -4,10 +4,10 @@ ecommerce-web
 Set up:
 
 truy cập đường dẫn /BE
-->chạy lệnh "npm i" sau đó chạy lệnh "npm run dev"
+->chạy lệnh "yarn install" sau đó chạy lệnh "yarn run dev"
 
 truy câp đường dẫn /BE
-->chạy lệnh "npm i" sau đó chạy lệnh "npm start"
+->chạy lệnh "yarn install" sau đó chạy lệnh "yarn start"
 
 ***note: bạn nên sử dụng yarn thay cho npm để tránh được nhiều xung đột dependencies khi cài đặt thư viện
 
