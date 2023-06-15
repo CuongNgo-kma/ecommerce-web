@@ -29,6 +29,6 @@ Tích hợp AI để tìm kiếm bằng ảnh:
 ![image](https://github.com/CuongNgo-kma/ecommerce-web/assets/56119321/e5c19e6c-dff7-4257-bd84-7b019011d773)
 
 Video demo: 
-https://drive.google.com/file/d/1H8sGxRW5sekma05ZkTcZvy8ICqxCw0aE/view?usp=sharing
+https://drive.google.com/file/d/1HiymvGdMKg33507csbT9FlAQeo-2BpEW/view?usp=sharing
 
 
