@@ -52,7 +52,7 @@ const ProductClassifier = () => {
     <>
       <div style={{ marginBottom: 40 }}>
         <input type="file" onChange={handleImageUpload} />
-        <button onClick={classifyImage}>Classify</button>
+        <button onClick={classifyImage} style={{ padding: '10px 20px', backgroundColor: '#f44336', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', 'margin':'22px 12px 0px 12px'}}>Classify</button>
         <img ref={imageRef} alt="Uploaded" />
         {prediction && <p>Prediction: {prediction}</p>}
       </div>
